@@ -15,6 +15,15 @@ public class Publisher {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    private String address;
+
+    public String getAddress() {
+        return this.address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     @OneToMany(mappedBy="publisher")
     private Set<Book> books = new HashSet<>();
@@ -33,8 +42,9 @@ public class Publisher {
     public Publisher(String name) {
         this.name = name;
     }
-    public Publisher(String name, Set<Book> books) {
+    public Publisher(String name, String address, Set<Book> books) {
         this.name = name;
+        this.name = address;
         this.books = books;
     }
 
@@ -85,6 +95,7 @@ public class Publisher {
         return "{" +
             " id=''" + getId() + "'" +
             " name='" + getName() + "'" +
+            " address='" + getAddress() + "'" +
             ", books='" + getBooks() + "'" +
             "}";
     }
